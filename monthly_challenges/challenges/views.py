@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 
-monthly_challenges = {
+monthly_birthdays = {
     "january": "Jenya Korkeshko",
     "february": "Sbou3i",
     "march": "Tarak Bouaziz",
@@ -10,10 +10,10 @@ monthly_challenges = {
     "may": "Looouzen",
     "june": "Mee & Hamdi",
     "july": "Kush",
-    "august": "Don't know aout",
+    "august": None,
     "september": "Nejah ben Rhaiem",
-    "october": "October too",
-    "november": "Also novemeber",
+    "october": None,
+    "november": None,
     "december": "Mom & Dad <3"
 }
 
@@ -35,23 +35,23 @@ months_by_number = {
 # Create your views here.
 
 def index(request):
-    months = list(monthly_challenges.keys())
-    list_elements_months = ""
-    for month in months:
-        month_path = reverse("month-challenge-url", args=[month])
-        list_elements_months += f"<li><a href='{month_path}' title='{month}'>{month.capitalize()}</a></li>"
-    
-    response_data = f"<ul>{list_elements_months}</ul>"
-    return HttpResponse(response_data)
+    months = list(monthly_birthdays.keys())
+    return render(
+        request, "challenges/index.html", {
+            "months": months,
+        }
+    )
 
 
 def monthly_challenge(request, month):
     try:
-        response_text = monthly_challenges[month]
-        response_data = f"<h1>{response_text}</h1>"
+        persons = monthly_birthdays[month]
+        return render(request, "challenges/challenge.html", {
+            "month_name": month,
+            "persons": persons
+        })
     except:
         return HttpResponseNotFound("Not supported")
-    return HttpResponse(response_data)
 
 def monthly_challenge_by_number(request, month):
     try:
