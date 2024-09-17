@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+    {% include "challenges/includes/header.html" %}
+    
     <h1>{{month_name|title}}'s birthdays:</h1>
     {% if persons %}
     <h2>{{persons}}</h2>
