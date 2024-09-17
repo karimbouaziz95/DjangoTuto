@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 monthly_birthdays = {
     "january": "Jenya Korkeshko",
@@ -51,7 +52,10 @@ def monthly_challenge(request, month):
             "persons": persons
         })
     except:
-        return HttpResponseNotFound("Not supported")
+        #response_data = render_to_string("404.html")
+        #return HttpResponseNotFound(response_data)
+        # OR
+        raise Http404() # For this 404.html in templates SHOULD be there
 
 def monthly_challenge_by_number(request, month):
     try:
