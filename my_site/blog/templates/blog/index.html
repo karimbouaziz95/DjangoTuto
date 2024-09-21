@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/include/post.css" %}">
+    <link rel="stylesheet" href="{% static "blog/index.css" %}">
+{% endblock %}
+
+{% block title %}
+    My Blog
+{% endblock %}
+
+{% block content %}
+
+    <section id="welcome">
+        <header>
+            <img src="{% static "blog/images/Karim.png" %}" alt="Karim - The author of this blog" />
+            <h2>Karim Bouaziz Blog</h2>
+        </header>
+
+        <p>Hi, I am Karim, a SW developer and athlete</p>
+    </section>
+
+    <section id="latest-posts">
+        <h2>My latest posts</h2>
+
+        <ul>
+            {% for post in posts %}
+                {% include "blog/includes/post.html" with post=post%}
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="about">
+        <h2>What I do</h2>
+        <p>I love coding, sports and helping people</p>
+        <p>My goal is to keep on growing and earn more money</p>
+
+    </section>
+
+{% endblock %}
