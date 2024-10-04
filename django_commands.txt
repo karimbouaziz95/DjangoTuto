@@ -1,3 +1,4 @@
 - django-admin startproject project_name : start new project
 - python manage.py startapp app_name : add new app (module) to the project
 - python manage.py runserver : start dev server
+- python manage.py createsuperuser : create admin user
