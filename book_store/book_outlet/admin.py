@@ -6,9 +6,7 @@ from .models import Book
 
 class BookAdmin(admin.ModelAdmin):
     #readonly_fields = ("slug",)                 # Fields names of the model (in a tuple)
-    prepopulated_fields = {
-        "slug": ("title", )                     # The value is a tuple holding all the fields used for that field (slug)
-    }
+    prepopulated_fields = {"slug": ("title", )}  # The value is a tuple holding all the fields used for that field (slug)
     list_filter = ("author", "rating",)
     list_display = ("title", "author",)
 
